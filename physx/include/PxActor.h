@@ -197,6 +197,13 @@ struct PxActorType
 
 The actor is owned by and contained in a PxScene.
 */
+
+struct PxExtendedUserdata
+{
+	int64_t id;
+	intptr_t ptr;
+};
+	
 class PxActor : public PxBase
 {
 public:
@@ -359,7 +366,8 @@ public:
 	virtual		PxAggregate*	getAggregate()	const = 0;
 
 	//public variables:
-				void*			userData;	//!< user can assign this to whatever, usually to create a 1:1 relationship with a user object.
+	void*			userData;	//!< user can assign this to whatever, usually to create a 1:1 relationship with a user object.
+	PxExtendedUserdata ext_user_data;		
 
 protected:
 	PX_INLINE					PxActor(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags), userData(NULL) {}
